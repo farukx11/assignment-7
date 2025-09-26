@@ -32,10 +32,9 @@ export default function TaskStatus({ tasks, completeTask, resolved }) {
           {resolved.map((task) => (
             <div
               key={task.id}
-              className="w-full px-4 py-3 rounded text-gray-900 text-sm"
+              className="w-full px-4 py-4 rounded text-gray-900 text-sm bg-white hover:bg-green-200"
               style={{
-                background: "rgba(224, 231, 255, 1)",
-                boxShadow: "0 4px 16px rgba(0, 0, 255, 0.1)",
+                boxShadow: "0 4px 16px rgba(0,0,0,0.08)",
               }}
             >
               {task.title}

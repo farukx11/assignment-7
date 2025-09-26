@@ -1,6 +1,6 @@
 export default function Navbar() {
   return (
-    <nav className="flex justify-between items-center py-4 px-6 max-w-[1200px] mx-auto shadow">
+    <nav className="flex justify-between items-center py-4 px-6 max-w-[1200px] mx-auto ">
       <h1 className="text-[18px] md:text-2xl font-bold text-gray-600">
         CS-Ticket System
       </h1>

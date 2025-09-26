@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import ticketsData from "./data/tickets.js";
 import Navbar from "./components/Navbar";
 import Banner from "./components/Banner";
 import TicketCard from "./components/TicketCard";
@@ -10,16 +9,28 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const [tickets, setTickets] = useState(ticketsData);
+  const [tickets, setTickets] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [resolved, setResolved] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1500);
-    return () => clearTimeout(timer);
+    fetch("/tickets.json")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch tickets");
+        return res.json();
+      })
+      .then((data) => {
+        setTickets(data);
+
+        setTimeout(() => {
+          setLoading(false);
+        }, 1500);
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+      });
   }, []);
 
   const addToTask = (ticket) => {
