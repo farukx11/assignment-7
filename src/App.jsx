@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense, lazy } from "react";
 import Navbar from "./components/Navbar";
-import Banner from "./components/Banner";
-import TicketCard from "./components/TicketCard";
-import TaskStatus from "./components/TaskStatus";
 import Footer from "./components/Footer";
 import { ToastContainer } from "react-toastify";
-
 import "react-toastify/dist/ReactToastify.css";
+
+const Banner = lazy(() => import("./components/Banner"));
+const TicketCard = lazy(() => import("./components/TicketCard"));
+const TaskStatus = lazy(() => import("./components/TaskStatus"));
 
 function App() {
   const [tickets, setTickets] = useState([]);
@@ -56,11 +56,20 @@ function App() {
             <p className="mt-4 text-gray-600 text-lg">Loading tickets...</p>
           </div>
         ) : (
-          <>
+          <Suspense
+            fallback={
+              <div className="flex flex-col items-center justify-center h-[70vh]">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-400 border-solid"></div>
+                <p className="mt-4 text-gray-500 text-md">
+                  Loading components...
+                </p>
+              </div>
+            }
+          >
             <Banner inProgress={tasks.length} resolved={resolved.length} />
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="col-span-2 grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {tickets.map((ticket) => (
                   <TicketCard
                     key={ticket.id}
@@ -69,14 +78,13 @@ function App() {
                   />
                 ))}
               </div>
-
               <TaskStatus
                 tasks={tasks}
                 completeTask={completeTask}
                 resolved={resolved}
               />
             </div>
-          </>
+          </Suspense>
         )}
       </div>
       <Footer />

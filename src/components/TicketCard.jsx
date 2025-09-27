@@ -14,38 +14,40 @@ export default function TicketCard({ ticket, addToTask }) {
   };
 
   return (
-    <div
-      className="bg-white rounded-lg p-4 sm:p-5 shadow-md relative w-full max-w-md mx-auto cursor-pointer
-                 hover:bg-[#e0ebdffd] hover:shadow-lg transition-colors duration-300"
-      onClick={handleClick}
-    >
+    <div>
       <div
-        className={`absolute top-4 right-4 text-xs px-3 py-1 rounded-full font-semibold 
-        ${statusColor[ticket.status] || "bg-gray-100 text-gray-700"}`}
+        className="bg-white rounded-lg p-4 sm:p-5 shadow-md relative  max-w-md mx-auto cursor-pointer hover:bg-[#e0ebdffd] hover:shadow-lg transition-colors duration-300 h-[200px] overflow-hidden w-full"
+        onClick={handleClick}
       >
-        {ticket.status}
-      </div>
+        <div
+          className={`absolute top-4 right-4 text-xs px-3 py-1 rounded-full font-semibold 
+        ${statusColor[ticket.status] || "bg-gray-100 text-gray-700"}`}
+        >
+          {ticket.status}
+        </div>
+        <div className="h-full overflow-y-auto pr-1">
+          <h3 className="text-base sm:text-md font-bold text-gray-800">
+            {ticket.title}
+          </h3>
 
-      <h3 className="text-base sm:text-md font-bold text-gray-800">
-        {ticket.title}
-      </h3>
+          <p className="text-sm text-gray-600 mt-1">{ticket.description}</p>
 
-      <p className="text-sm text-gray-600 mt-1">{ticket.description}</p>
+          <div className="mt-4 text-xs sm:text-sm text-gray-500 space-y-2">
+            <p>
+              <span className="text-gray-700 font-semibold">#{ticket.id}</span>{" "}
+              <span className="text-red-600 font-bold ml-2 uppercase">
+                {ticket.priority} Priority
+              </span>
+            </p>
 
-      <div className="mt-4 text-xs sm:text-sm text-gray-500 space-y-2">
-        <p>
-          <span className="text-gray-700 font-semibold">#{ticket.id}</span>{" "}
-          <span className="text-red-600 font-bold ml-2 uppercase">
-            {ticket.priority} Priority
-          </span>
-        </p>
-
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-          <span>Customer: {ticket.customer}</span>
-          <span className="flex items-center gap-1 text-gray-500">
-            <FaCalendarAlt className="text-gray-400" />
-            {ticket.createdAt}
-          </span>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+              <span>Customer: {ticket.customer}</span>
+              <span className="flex items-center gap-1 text-gray-500">
+                <FaCalendarAlt className="text-gray-400" />
+                {ticket.createdAt}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
