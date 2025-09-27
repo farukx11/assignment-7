@@ -1,3 +1,5 @@
+// Main section
+
 import { toast } from "react-toastify";
 
 export default function TaskStatus({ tasks, completeTask, resolved }) {
