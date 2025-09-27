@@ -5,7 +5,7 @@ import {
   FaLinkedinIn,
   FaXTwitter,
 } from "react-icons/fa6";
-
+// Footer
 const Footer = () => {
   return (
     <div className="bg-[#000] mt-8 text-white pt-20 pb-10">
