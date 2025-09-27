@@ -4,6 +4,7 @@ export default function Navbar() {
       <h1 className="text-[18px] md:text-2xl font-bold text-gray-600">
         CS-Ticket System
       </h1>
+      {/* Navbar */}
       <div className="hidden md:flex items-center gap-6">
         <a href="">Home</a>
         <a href="">FAQ</a>
