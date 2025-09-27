@@ -1,3 +1,5 @@
+<!-- Here is all Ques: and Ans : -->
+
 - What is JSX, and why is it used?
 
   Ans: JSX stands for JavaScript XML,

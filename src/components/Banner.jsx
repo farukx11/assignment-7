@@ -1,3 +1,5 @@
+// Banner
+
 export default function Banner({ inProgress, resolved }) {
   return (
     <div className="my-6 max-w-6xl mx-auto px-4">
